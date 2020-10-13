@@ -1,6 +1,6 @@
 package project
 
-import com.hei.fp.project.Functions
+import com.hei.fp.project.FunctionsExercices
 import org.scalatest.freespec.AnyFreeSpec
 
 class FunctionsTestEx extends AnyFreeSpec{
@@ -19,19 +19,19 @@ class FunctionsTestEx extends AnyFreeSpec{
     }
     "addThree(Int, f(Int)) for 3 and anonymous x + 2 given " - {
       "should return 1 + (3+1) = " in {
-        val fnt = new Functions()
+        val fnt = new FunctionsExercices()
         assert(??? == ???)
       }
     }
     "factoriel(3) " - {
       "should return 3*2*1 = 6 " in {
-        val fnt = new Functions()
+        val fnt = new FunctionsExercices()
         assert(??? == ???)
       }
     }
     "fact(3) " - {
       "should return 3*2*1 = 6 " in {
-        val fnt = new Functions()
+        val fnt = new FunctionsExercices()
         assert(??? == ???)
       }
     }
