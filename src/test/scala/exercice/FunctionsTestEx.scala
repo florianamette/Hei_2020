@@ -1,6 +1,6 @@
-package project
+package exercice
 
-import com.hei.fp.project.FunctionsExercices
+import com.hei.fp.exercices.FunctionsExercices
 import org.scalatest.freespec.AnyFreeSpec
 
 class FunctionsTestEx extends AnyFreeSpec{
@@ -43,7 +43,14 @@ class FunctionsTestEx extends AnyFreeSpec{
         }
       }
     }
-
+    // todo write tests for sumInts, sumSquares & sumPowerOfTwo
+    "My function  " - {
+      ": " - {
+        "should " in {
+          assert(??? == ???)
+        }
+      }
+    }
   }
 }
 

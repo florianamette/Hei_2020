@@ -1,4 +1,4 @@
-package com.hei.fp.project
+package com.hei.fp.exercices
 
 // A comment!
 /* Another comment */
@@ -181,9 +181,9 @@ class FunctionsExercices {
   // Les fonctions qui prennent en paramètres d’autres fonctions
   // ou qui les renvoient comme résultat sont appelées fonction du premier ordre
 
-  // todo Écrire une fonction additionnant tous les entiers compris entre deux bornes a et b :
+  // todo ecrire une fonction additionnant tous les entiers compris entre deux bornes a et b :
   /**
-   *
+   * hint linear reccursive
    * @param a
    * @param b
    * @return
