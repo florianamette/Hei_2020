@@ -1,4 +1,4 @@
-package com.hei.fp.exercices
+package com.hei.fp.introduction
 
 // A comment!
 /* Another comment */
@@ -44,13 +44,12 @@ class FunctionsExercices {
 
   // todo Write and test a function that returns x^2 + y^2 and test it with 3 , 2+2
   /**
-   *
-   * @param x
-   * @param y
-   * @return
-   */
-  def sumOfSquares (x: Double, y: Double) = ???
-
+   *  my comment
+   * @param x Double
+   * @param y Double
+   * @return x^2 + y*y
+   * */
+  def sumOfSquares (x: Double, y: Double) = square(x) + square(y)
 
   // ---------------------------------------------- //
   /*     Expressions conditionnelles : if - else    */
@@ -60,16 +59,16 @@ class FunctionsExercices {
   //  write the test first
   /**
    *
-   * @param x
+   * @param
    * @return
    */
-  def abs(x: Double) = ???
+  // def abs(x: Double)  = ??? //if (x <0) -x else x
 
   // ---------------------------------------------- //
   /*         Call by name - call by value           */
   // ---------------------------------------------- //
 
-  def loop : Int = loop
+  //def loop : Int = loop
   //  loop: Int
   def first(x: Int, y: Int) = x
   // ----- Call by name => first(1,loop) = execution infinie
@@ -80,7 +79,7 @@ class FunctionsExercices {
   // ---------------------------------------------- //
   /*               Anonymous function               */
   // ---------------------------------------------- //
-  (1 to 5).map( x => x * 1)
+  (1 to 5).map( x => x * 2)
   ///(x: Int, y: Int) => x + y
 
   /**
@@ -117,15 +116,22 @@ class FunctionsExercices {
   // Fonction qui fait appel à elle-même
   // todo Write and test a function return the factorial value of an integer
   /**
-   *
-   * @param n
-   * @return
+   * Linear reccursive function returning factoriel(n)
+   * factoriel 5 = 5 * 4 * 3 * 2 * 1
+   * 5 * factoriel(4)
+   * 5 * 4 * factoriel(3)
+   * 5 * .... * 1
+   * @param n : int
+   * @return : factoriel(n)
    */
-  def factorielle(n : Int) : Int = ???
+  def factorielle(n : Int) : Int = {
+    if (n == 1) 1
+    else n * factorielle(n-1)
+  }
 
   // ------------------------------------------------------ //
   /*            Fonctions imbriquées :                      */
-  /* Calcul des la racine carrée par la méthode de Newton   */
+  /* Calcul des racines carrée par la méthode de Newton     */
   // ------------------------------------------------------ //
 
   // Objectif : définir la fonction
@@ -136,34 +142,61 @@ class FunctionsExercices {
   //  y     x/y       (y + x/y)/2
   //  1     2/1        1.5
   //  1.5   2/1.5      1.4167    ....
-
+  /**
   def sqrtIter(guess: Double, x: Double): Double =
     if (isGoodEnough(guess, x)) guess
     else sqrtIter(improve(guess, x), x)
 
   val e : Double = 0.001
   def improve(guess: Double, x: Double) : Double = (guess + x / guess) / 2
-  def isGoodEnough(guess: Double, x: Double): Boolean = abs(square(guess) - x) //   < e  (commenté pour éviter l'erreur d'évaluation square et abs non définies)
+  def isGoodEnough(guess: Double, x: Double): Boolean = abs(square(guess) - x) < e // (commenté pour éviter l'erreur d'évaluation square et abs non définies)
+  def abs(d: Double) = if(x >0) x else -x
 
   def sqrt(x: Double) = sqrtIter(1.0, x)
+*/
+  def abs(d: Double) = if(x >0) x else -x
 
   // todo rewrite the function sqrt(x) with only one block -  What about the parameters ? Can we simplify ?
-  def sqrt = ???
+  def sqrt(x : Double, e : Double) = {
+
+    def improve(guess: Double) = (guess + x / guess) / 2
+    def isGoodEnough(guess: Double): Boolean = abs(square(guess) - x) < e
+    def abs(x: Double) = if(x > 0) x else -x
+    def square(x : Double) : Double = x * x
+    def sqrtIter(guess: Double, x: Double): Double =
+      if (isGoodEnough(guess)) guess
+      else sqrtIter(improve(guess), x)
+
+    sqrtIter(1.0, x)
+  }
 
   // ------------------------------------------------------ //
   /*                 recursivité terminale                  */
   // ------------------------------------------------------ //
   def gcd(a :Int, b : Int) : Int =
-  if (b == 0 ) a
-  else gcd(b, a % b)
+    if (b == 0 ) a
+    else gcd(b, a % b)
 
+  // gcd(14, 21)
+  // if (21 == 0) 14 else gcd(21, 14 % 21)
+  // if (false) 14 else gcd(21, 14 % 21)
+  // gcd(21, 14 % 21)
+  // gcd(21, 14)
+  // if (14 == 0) 21 else gcd(14, 21 % 14)
+  // gcd(14, 21 % 14)
+  // gcd(14, 7)
+  // if (7==0) 14 else gcd(7, 14 % 7)
+  // gcd(7,14 % 7)
+  // gcd(7, 0)
+  // if(0 == 0) 7 else gcd(0, 7 % 0)
+  // 7
   // -> todo compare with the last factorielle formulation
 
   // -> todo write a tailrec factorielle function
 
   def fact(acc : Int, n : Int) : Int = {
-    if (???) ???
-    else ???
+    if (n <= 1) acc
+    else fact(n * acc, n-1)
   }
 
   // todo write a sum function using foldLeft methode
@@ -181,27 +214,27 @@ class FunctionsExercices {
   // Les fonctions qui prennent en paramètres d’autres fonctions
   // ou qui les renvoient comme résultat sont appelées fonction du premier ordre
 
-  // todo ecrire une fonction additionnant tous les entiers compris entre deux bornes a et b :
+  // todo écrire une fonction additionnant tous les entiers compris entre deux bornes a et b :
   /**
    * hint linear reccursive
-   * @param a
-   * @param b
+   * @param
+   * @param
    * @return
    */
-  def sumInts(a: Int, b: Int): Int =
-    if (???) ??? else ???
+  //def sumInts(a: Int, b: Int): Int =
+  //  if (a > b) 0 else a + sumInts(a + 1, b)
 
   // todo   Écrire une fonction additionnant les carrés de tous les entiers compris entre deux bornes a et b:
   def square(x: Int): Int = x * x   // nb : surcharge de la function square avec un type Int
 
-  def sumSquares(a: Int, b: Int): Int =
-    if (???) ??? else ???
+  //def sumSquares(a: Int, b: Int): Int =
+  //  if (a > b) 0 else square(a) + sumSquares(a + 1, b)
 
 
   def powerOfTwo(x: Int): Int = if (x == 0) 1 else 2 * powerOfTwo(x - 1)
   // todo Écrire une fonction additionnant les puissances de 2 de tous les entiers compris entre deux bornes a et b :
-  def sumPowersOfTwo(a: Int, b: Int): Int =
-    if (???) ??? else ???
+  // def sumPowersOfTwo(a: Int, b: Int): Int =
+  // if (a > b) 0 else powerOfTwo(a) + sumPowersOfTwo(a + 1 , b)
 
   // Ces fonctions étant toutes des instances de "Somme de f(n) pour n variant de a à b",
   // nous pouvons mettre ce motif commun en facteur en définissant une fonction sum :
@@ -215,9 +248,9 @@ class FunctionsExercices {
   def id(x: Int) : Int = x
   // todo réécrire les fonctions sumInts, sumSquares, sumPowersOfTwo
   // todo écrire les tests correspondants
-  //def sumInts(a: Int, b: Int): Int = ???
-  //def sumSquares(a: Int, b: Int): Int = ???
-  //def sumPowersOfTwo(a: Int, b: Int): Int = ???
+  // def sumInts(a: Int, b: Int): Int = sum(id,a,b)
+  def sumSquares(a: Int, b: Int): Int = sum(square,a,b)
+  def sumPowersOfTwo(a: Int, b: Int): Int = sum(powerOfTwo,a,b)
 
   // ---------------------------------------------- //
   /*             fonctions anonymes                 */
@@ -228,8 +261,8 @@ class FunctionsExercices {
   // (x : Int, y : Int) => x * y
 
   // todo reformuler sumInts et sumSquares à l'iade fonction anonymes
-  //def sumInts(a: Int, b: Int): Int = ???
-  //def sumSquare(a: Int, b: Int): Int = ???
+  def sumInts(a: Int, b: Int): Int = sum(x => x, a , b )
+  def sumSquare(a: Int, b: Int): Int = sum(x => x * x , a , b )
 
   // ---------------------------------------------- //
   /*                   Currying                     */
@@ -237,21 +270,22 @@ class FunctionsExercices {
 
   // a et b apparaissent comme paramètres mais sont statiques
   // comment s'en débarasser ?
-  def sum(f : Int => Int) : (Int, Int) => Int = {
-    def sumF(a: Int, b: Int) : Int =
-      if(a>b) 0 else f(a) + sumF(a+1 , b)
-    sumF
-  }
+  //def sum(f : Int => Int) : (Int, Int) => Int = {
+  //  def sumF(a: Int, b: Int) : Int =
+  //    if(a>b) 0 else f(a) + sumF(a+1 , b)
+  //  sumF
+  //}
 
   // On peut donc maintenant écrire
-  // def sumInts = ???
+  // def sumInts = sum(x => x)
   // def sumSquares = ???
   // def sumPowersOfTwo = ???
 
   // formulation équivalente mais plus courte
-  // def sum(f : Int => Int) (a :Int,b : Int) : Int =
-  //    if (a > b) 0 else f(a) + sum(f)(a+1,b)
-
+ /* def sum(f : Int => Int) (a :Int,b : Int) : Int =
+      if (a > b) 0
+      else f(a) + sum(f)(a+1,b)
+ */
   // todo calculer la somme des carrées des nombres compris entre 1 et 10 + la somme des puissances de 2 pour les chiffres compris entre 10 et 20
 
   // ---------------------------------------------- //
@@ -259,6 +293,7 @@ class FunctionsExercices {
   // ---------------------------------------------- //
 
   // todo écrire une version récursive terminale de la fonction sum
+  /**
   def sum(f: Int => Int)(a: Int, b: Int): Int = {
     def iter(a: Int, result: Int): Int = {
       if (???) ???
@@ -266,6 +301,7 @@ class FunctionsExercices {
     }
     iter(???, ???)
   }
+  */
 
   // todo La somme des carrés des dix premiers nombres naturels est,
   //  1^2 + 2^2 + 3^2 + ... + 10^2  = 385
