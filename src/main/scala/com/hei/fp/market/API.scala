@@ -1,6 +1,6 @@
 package com.hei.fp.market
 
-class API(ticker : String ) {
+class API {
 
   /**
    * @param ticker a ticker code
@@ -10,13 +10,7 @@ class API(ticker : String ) {
 
     val url = "https://in.finance.yahoo.com/quote/" + ticker + "/history?ltr=1"
 
-    val response = try {
-      requests.get(url)
-    } catch {
-      case e => println(s"Something went wrong ! $e")
-        null
-    }
-
+    val response = requests.get(url)
 
     def findHistorical = response.text()
       .replace("]", "\n")
@@ -27,12 +21,12 @@ class API(ticker : String ) {
       .map(_.replace(",{", ""))
       .map(_.replace(" ", ""))
       .map(_.replace("\"", ""))
-      .drop(5)
+      .drop(2)
 
     val kv: Array[Map[String, String]] =
       findHistorical.map(x => x.split(",")
         .map(x => {
-          val y = x.split(":");
+          val y = x.split(":")
           (y(0), y(1))
         }).toMap)
 
