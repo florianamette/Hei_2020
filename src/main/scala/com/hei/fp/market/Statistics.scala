@@ -15,11 +15,17 @@ class Statistics(data:Array[Double]) {
 
     meanStd(x, 0.0, 0.0, 0)
   }
-/*
+
   /** compute moving average : data - number of periods */
   def movingAverage(n: Int): Array[Double] = (1 to data.length).map {
-    case ??? => ???
-    case ??? => ???
+    case x if x < n => 0.0
+    case x => meanStd( data.slice(x - n , x) )._1
   }.toArray
-*/
+
+  /** compute moving standard deviation : data - number of periods */
+  def movingStd(n: Int): Array[Double] = (1 to data.length).map {
+    case x if x < n => 0.0
+    case x => meanStd( data.slice(x - n , x) )._2
+  }.toArray
+
 }
