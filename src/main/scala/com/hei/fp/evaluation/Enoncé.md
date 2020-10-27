@@ -34,7 +34,7 @@ Commentez et testez (**_tests unitaires_**) le programme.
 
 Option : les caractéristiques peuvent être passés en paramètres de lancement de l'applicatif
 
-=> Envoyer par email pour 17h55 ce 27/10/2020 : 
+=> Envoyer par email pour 18h15 ce 27/10/2020 : 
 - Le programme au format exécutable (JAR)
 - Le projet (répertoire Intellij) sous format zip
 
